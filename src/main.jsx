@@ -24,6 +24,7 @@ function App() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [bagCount, setBagCount] = useState(0)
   const [active, setActive] = useState(0)
+  const [flipped, setFlipped] = useState(null)
   const leaveTimer = useRef()
   const heroRef = useRef()
 
@@ -85,14 +86,18 @@ function App() {
             <button
               className={`product product-${product.id} ${active === index ? 'is-active' : ''}`}
               key={product.id}
-              onClick={() => { setActive(index); setExpanded(true) }}
+              onClick={() => { setActive(index); setExpanded(true); setFlipped(flipped === product.id ? null : product.id) }}
+              onPointerEnter={() => { setActive(index); setFlipped(product.id); setExpanded(true) }}
+              onPointerLeave={() => setFlipped(null)}
               aria-label={`View ${product.name}, ${product.detail}`}
             >
-              <img src={product.image} alt="" />
+              <span className={`product-inner ${flipped === product.id ? 'is-flipped' : ''}`}>
+                <img className="product-face front" src={product.image} alt="" />
+                <img className="product-face back" src={`/assets/cutouts/back/${product.id}.png`} alt="" />
+              </span>
               <span className="product-shadow" />
             </button>
           ))}
-          <span className="pebble" aria-hidden="true" />
         </div>
 
         <div className="expanded-info" aria-live="polite">
