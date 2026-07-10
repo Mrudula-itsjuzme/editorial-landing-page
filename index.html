@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furrytail. — Your personal selection | A daily regimen</title>
+    <meta name="description" content="We propose a daily regimen comprising our 99.5% natural origin index gentle daily shampoo, enriched with amino acids and live prebiotic ferments suited to canine and feline delicate dermal mantles." />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="aesop-theme-violet">
+    <!-- Top Nav Header (Exact Aesop Minimalist Bar) -->
+    <header class="aesop-nav gs-nav" id="navbar">
+      <nav class="nav-left" aria-label="Primary Navigation">
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#read" class="nav-link">Read</a>
+        <a href="#stores" class="nav-link">Stores</a>
+        <a href="#search" class="nav-link">Search</a>
+      </nav>
+
+      <div class="nav-right">
+        <a href="#login" class="nav-link">Login</a>
+        <button class="btn-drawer-trigger" id="btn-open-drawer" aria-label="View Clinical Scent Profile & Standards">
+          <span class="dot-indicator"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Aesop Regimen Hero Stage -->
+    <main class="aesop-hero">
+      <!-- Brand Logo at Top Left of Content Stage -->
+      <div class="aesop-brand-row gs-mask-wrap">
+        <h2 class="aesop-logo gs-mask-item">Furrytail.</h2>
+      </div>
+
+      <div class="aesop-split-grid">
+        <!-- Left Minimalist Editorial Column -->
+        <section class="aesop-editorial">
+          <div class="gs-mask-wrap">
+            <p class="aesop-eyebrow gs-mask-item" id="regimen-eyebrow">A daily regimen</p>
+          </div>
+
+          <div class="gs-mask-wrap title-mask">
+            <h1 class="aesop-title gs-mask-item" id="regimen-title">Your personal selection</h1>
+          </div>
+
+          <div class="gs-mask-wrap prose-mask">
+            <p class="aesop-prose gs-mask-item" id="regimen-prose">
+              We propose a daily regimen comprising our 99.5% natural origin index gentle daily shampoo, enriched with amino acids and live prebiotic ferments suited to canine and feline delicate dermal mantles.
+            </p>
+          </div>
+
+          <div class="gs-mask-wrap action-mask">
+            <button class="btn-aesop gs-mask-item" id="btn-add-ritual">
+              Select Formulation — $38
+            </button>
+          </div>
+
+          <!-- Minimalist Formulation Switcher Tabs -->
+          <div class="aesop-tabs gs-mask-wrap" role="tablist" aria-label="Select Formulation">
+            <div class="tabs-inner gs-mask-item">
+              <button class="aesop-tab active" data-variant="violet" role="tab" aria-selected="true" tabindex="0">
+                01 / Violet Leaf & Muslin
+              </button>
+              <span class="tab-sep">•</span>
+              <button class="aesop-tab" data-variant="santal" role="tab" aria-selected="false" tabindex="0">
+                02 / Santal & White Tea
+              </button>
+              <span class="tab-sep">•</span>
+              <button class="aesop-tab" data-variant="fig" role="tab" aria-selected="false" tabindex="0">
+                03 / Fig & Neroli
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Ensemble Apothecary Table Stage -->
+        <section class="aesop-table-stage" id="table-stage">
+          <div class="table-surface" aria-hidden="true"></div>
+
+          <!-- Vessel 1: Small Jar / Front Left (Fig formulation) -->
+          <div class="table-vessel vessel-jar gs-vessel" data-variant="fig" tabindex="0" role="button" aria-label="Select Fig & Neroli formulation">
+            <div class="vessel-img-wrap">
+              <img src="/assets/bottles/fig-neroli.png" alt="Fig and Neroli apothecary vessel" class="vessel-img" />
+            </div>
+            <div class="vessel-contact-shadow"></div>
+          </div>
+
+          <!-- Vessel 2: Hero Focal Pump Bottle / Center (Violet formulation) -->
+          <div class="table-vessel vessel-main gs-vessel active" data-variant="violet" tabindex="0" role="button" aria-label="Select Violet Leaf & Muslin formulation">
+            <div class="vessel-img-wrap">
+              <img src="/assets/bottles/violet-ambient.png" alt="Violet Leaf and Muslin main pump bottle" class="vessel-img" />
+            </div>
+            <div class="vessel-contact-shadow"></div>
+          </div>
+
+          <!-- Vessel 3: Medium Flanking Bottle / Right (Santal formulation) -->
+          <div class="table-vessel vessel-flank gs-vessel" data-variant="santal" tabindex="0" role="button" aria-label="Select Santal & White Tea formulation">
+            <div class="vessel-img-wrap">
+              <img src="/assets/bottles/santal-whitetea.png" alt="Santal and White Tea apothecary bottle" class="vessel-img" />
+            </div>
+            <div class="vessel-contact-shadow"></div>
+          </div>
+
+          <!-- Vessel 4: Amber Silhouette Bottle / Back Far Right -->
+          <div class="table-vessel vessel-amber gs-vessel" data-variant="amber" aria-hidden="true">
+            <div class="vessel-img-wrap">
+              <img src="/assets/bottles/bottle-silhouette.png" alt="Amber laboratory glass bottle" class="vessel-img" />
+            </div>
+            <div class="vessel-contact-shadow"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Swiss Clinical Footer Bar across bottom of viewport -->
+    <footer class="aesop-footer gs-mask-wrap">
+      <div class="footer-track gs-mask-item">
+        <span class="footer-item">ISO 16128-2 Certified Derivation</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-item">pH Balanced 6.5 Dermal Formula</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-item">Live Prebiotic & Probiotic Ferments</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-item">250ml — 8.45 fl oz Refillable Glass Vessel</span>
+      </div>
+    </footer>
+
+    <!-- Slide-out Clinical Specs Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="specs-drawer" id="specs-drawer" role="dialog" aria-labelledby="drawer-scent-name" aria-modal="true">
+      <div class="drawer-header">
+        <div class="drawer-title-wrap">
+          <span class="drawer-sub">Clinical & Scent Analysis</span>
+          <h3 id="drawer-scent-name">Violet Leaf & Muslin</h3>
+        </div>
+        <button class="btn-close-drawer" id="btn-close-drawer" aria-label="Close Drawer">
+          <i data-lucide="x" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Olfactory Fragrance Pyramid</h4>
+        <div class="fragrance-pyramid">
+          <div class="pyramid-tier tier-top">
+            <div class="tier-badge">TOP</div>
+            <div class="tier-content">
+              <h5>First Impression Notes</h5>
+              <p id="note-top">Crisp Violet Leaf, Dewy Morning Bergamot, Botanical Lavender</p>
+            </div>
+          </div>
+          <div class="pyramid-tier tier-heart">
+            <div class="tier-badge">HEART</div>
+            <div class="tier-content">
+              <h5>Core Botanical Body</h5>
+              <p id="note-heart">Orris Root, White Muslin Accord, Soothing Chamomile Flower</p>
+            </div>
+          </div>
+          <div class="pyramid-tier tier-base">
+            <div class="tier-badge">BASE</div>
+            <div class="tier-content">
+              <h5>Long-lasting Aroma Trail</h5>
+              <p id="note-base">Clean Cedarwood, Soft Cashmere, Gentle Amber</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Clinical Formulation Standards</h4>
+        <div class="drawer-iso-badge">
+          <div class="iso-icon-wrap">
+            <i data-lucide="microscope" style="width:24px;height:24px;flex-shrink:0;"></i>
+          </div>
+          <p>
+            Our 99.5% Natural Origin Index is calculated according to international standard <strong>ISO 16128-2</strong>. The formula features live prebiotic ferments that protect your pet's dermal microbiome while amino acid surfactants cleanse without disrupting essential lipids.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

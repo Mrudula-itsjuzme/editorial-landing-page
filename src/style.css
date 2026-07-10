@@ -1,0 +1,686 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Exact Aesop Studio Warm Cream & Ivory Tokens */
+  --bg-studio: #F4F1EA;
+  --text-primary: #1C1B18;
+  --text-secondary: #5E5B54;
+  --text-muted: #8C8880;
+  --border-subtle: #DFDCD5;
+  --border-focus: #1C1B18;
+  
+  /* Apothecary Accent & Scent Themes */
+  --accent-dark: #1C1B18;
+  --theme-spotlight: rgba(232, 224, 238, 0.45);
+  
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Cinematic Easing & Timing */
+  --ease-aesop: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-mask: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-rack: 650ms;
+}
+
+body.aesop-theme-violet {
+  --bg-studio: #F4F1EA;
+  --theme-spotlight: rgba(234, 224, 242, 0.5);
+}
+
+body.aesop-theme-santal {
+  --bg-studio: #F5EFEB;
+  --theme-spotlight: rgba(244, 235, 226, 0.55);
+}
+
+body.aesop-theme-fig {
+  --bg-studio: #EFF3EE;
+  --theme-spotlight: rgba(228, 237, 226, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-studio);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color var(--duration-rack) var(--ease-aesop);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-studio);
+}
+::-webkit-scrollbar-thumb {
+  background: #CDC9C2;
+  border-radius: 3px;
+}
+
+/* ==========================================
+   1. AESOP SWISS MINIMALIST TOP NAV BAR
+   ========================================== */
+.aesop-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.8rem 4.5rem;
+  background: transparent;
+  transition: padding 0.35s var(--ease-aesop);
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0.045em;
+  position: relative;
+  padding: 0.2rem 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.65;
+}
+
+.btn-drawer-trigger {
+  background: transparent;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  transition: transform 0.25s var(--ease-aesop), background-color 0.25s ease;
+}
+
+.btn-drawer-trigger:hover .dot-indicator {
+  transform: scale(1.35);
+}
+
+/* ==========================================
+   2. AESOP REGIMEN HERO composition
+   ========================================== */
+.aesop-hero {
+  flex: 1;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1.2rem 4.5rem 5rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.aesop-brand-row {
+  margin-bottom: 2rem;
+}
+
+.aesop-logo {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.aesop-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 560px;
+}
+
+/* Left Minimalist Editorial Column */
+.aesop-editorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 480px;
+  z-index: 20;
+}
+
+.gs-mask-wrap {
+  overflow: hidden;
+}
+
+.gs-mask-item {
+  will-change: transform, opacity;
+}
+
+.aesop-eyebrow {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.aesop-title {
+  font-family: var(--font-serif);
+  font-size: 3.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.aesop-prose {
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  margin-bottom: 2.4rem;
+}
+
+/* Sharp, Solid Rectangular CTA Button */
+.btn-aesop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-dark);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 1.05rem 2.4rem;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s var(--ease-aesop), box-shadow 0.25s ease;
+  width: fit-content;
+  margin-bottom: 3.5rem;
+}
+
+.btn-aesop:hover {
+  background: #33312C;
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 20px -5px rgba(28, 27, 24, 0.28);
+}
+
+.btn-aesop:active {
+  transform: scale(0.99);
+}
+
+/* Minimalist Text Tab Switcher */
+.aesop-tabs {
+  margin-top: 0.5rem;
+}
+
+.tabs-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.aesop-tab {
+  background: transparent;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.aesop-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--text-primary);
+  transition: width 0.35s var(--ease-aesop);
+}
+
+.aesop-tab:hover {
+  color: var(--text-primary);
+}
+
+.aesop-tab.active {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.aesop-tab.active::after {
+  width: 100%;
+}
+
+.tab-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* ==========================================
+   3. RIGHT APOTHECARY ENSEMBLE TABLE STAGE
+   ========================================== */
+.aesop-table-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 580px;
+  width: 100%;
+  z-index: 5;
+  perspective: 1400px;
+}
+
+.table-surface {
+  position: absolute;
+  bottom: 12px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(223, 220, 213, 0) 0%, rgba(223, 220, 213, 0.8) 50%, rgba(223, 220, 213, 0) 100%);
+  z-index: 1;
+}
+
+/* Physical Vessels Ensemble Positioning */
+.table-vessel {
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform, filter, opacity;
+  transition: filter var(--duration-rack) var(--ease-aesop),
+              opacity var(--duration-rack) var(--ease-aesop),
+              z-index 0s;
+  cursor: pointer;
+}
+
+.table-vessel:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+/* Vessel 1: Fig Small Jar (Front Left) */
+.vessel-jar {
+  left: 6%;
+  z-index: 15;
+}
+.vessel-jar .vessel-img {
+  max-height: 270px;
+}
+
+/* Vessel 2: Main Hero Pump Bottle (Center) */
+.vessel-main {
+  left: 32%;
+  z-index: 25;
+}
+.vessel-main .vessel-img {
+  max-height: 500px;
+}
+
+/* Vessel 3: Flanking Medium Bottle (Right) */
+.vessel-flank {
+  right: 15%;
+  z-index: 18;
+}
+.vessel-flank .vessel-img {
+  max-height: 380px;
+}
+
+/* Vessel 4: Amber Silhouette Vessel (Far Background Right) */
+.vessel-amber {
+  right: 1%;
+  z-index: 10;
+  pointer-events: none;
+}
+.vessel-amber .vessel-img {
+  max-height: 300px;
+}
+
+.vessel-img-wrap {
+  position: relative;
+  z-index: 5;
+}
+
+.vessel-img {
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--duration-rack) var(--ease-aesop);
+}
+
+/* Realistic Ground Contact Shadows */
+.vessel-contact-shadow {
+  position: absolute;
+  bottom: -10px;
+  width: 75%;
+  height: 22px;
+  background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.35) 0%, rgba(28, 27, 24, 0) 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: 2;
+  transition: transform var(--duration-rack) var(--ease-aesop),
+              opacity var(--duration-rack) var(--ease-aesop);
+}
+
+/* Optical Depth-of-Field (DoF) Classes (Controlled by GSAP & CSS) */
+.table-vessel.active {
+  z-index: 30;
+  opacity: 1 !important;
+  filter: drop-shadow(0 28px 45px rgba(28, 27, 24, 0.22)) blur(0px) !important;
+}
+
+.table-vessel.active .vessel-img {
+  transform: scale(1.05);
+}
+
+.table-vessel.active .vessel-contact-shadow {
+  transform: scale(1.18);
+  opacity: 0.9;
+}
+
+.table-vessel.receded {
+  opacity: 0.55 !important;
+  filter: drop-shadow(0 10px 18px rgba(28, 27, 24, 0.08)) blur(2.5px) !important;
+}
+
+.table-vessel.receded .vessel-img {
+  transform: scale(0.94);
+}
+
+.table-vessel.receded .vessel-contact-shadow {
+  transform: scale(0.85);
+  opacity: 0.4;
+}
+
+/* ==========================================
+   4. SWISS CLINICAL FOOTER BAR ACROSS BOTTOM
+   ========================================== */
+.aesop-footer {
+  width: 100%;
+  padding: 1.6rem 4.5rem;
+  border-top: 1px solid rgba(223, 220, 213, 0.6);
+  background: var(--bg-studio);
+  z-index: 50;
+}
+
+.footer-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.footer-item {
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.footer-dot {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+/* ==========================================
+   5. SLIDE-OUT CLINICAL SPECS DRAWER
+   ========================================== */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(28, 27, 24, 0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.specs-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  z-index: 999;
+  padding: 3.2rem 2.6rem;
+  overflow-y: auto;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.14);
+  transform: translateX(100%);
+  transition: transform 0.55s var(--ease-aesop);
+  display: flex;
+  flex-direction: column;
+}
+
+.specs-drawer.active {
+  transform: translateX(0%);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 2.2rem;
+}
+
+.drawer-sub {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.drawer-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btn-close-drawer {
+  background: #F4F1EA;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.btn-close-drawer:hover {
+  background: #DFDCD5;
+  transform: scale(1.05);
+}
+
+.drawer-section {
+  margin-bottom: 2.4rem;
+}
+
+.drawer-section h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.fragrance-pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pyramid-tier {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.15rem 1.35rem;
+  background: var(--bg-studio);
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.tier-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.65rem;
+  background: #E8E5DF;
+  color: var(--text-primary);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.tier-content h5 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.tier-content p {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.drawer-iso-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.35rem;
+  background: #EAE6DF;
+  border-radius: 6px;
+  color: var(--text-primary);
+}
+
+.iso-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-iso-badge p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+/* Responsive Layouts */
+@media (max-width: 1200px) {
+  .aesop-split-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  
+  .aesop-editorial {
+    max-width: 100%;
+  }
+  
+  .aesop-table-stage {
+    min-height: 480px;
+  }
+  
+  .vessel-main .vessel-img { max-height: 420px; }
+  .vessel-flank .vessel-img { max-height: 330px; }
+  .vessel-jar .vessel-img { max-height: 230px; }
+}
+
+@media (max-width: 768px) {
+  .aesop-nav {
+    padding: 1.2rem 1.6rem;
+  }
+  
+  .nav-left {
+    display: none;
+  }
+  
+  .aesop-hero {
+    padding: 1rem 1.6rem 3rem 1.6rem;
+  }
+  
+  .aesop-title {
+    font-size: 2.6rem;
+  }
+  
+  .aesop-table-stage {
+    min-height: 380px;
+    justify-content: space-around;
+  }
+  
+  .vessel-main { left: 20%; }
+  .vessel-jar { left: 0%; }
+  .vessel-flank { right: 5%; }
+  .vessel-amber { display: none; }
+  
+  .vessel-main .vessel-img { max-height: 340px; }
+  .vessel-flank .vessel-img { max-height: 260px; }
+  .vessel-jar .vessel-img { max-height: 180px; }
+  
+  .aesop-footer {
+    padding: 1.2rem 1.6rem;
+  }
+}
