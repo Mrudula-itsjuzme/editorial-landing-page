@@ -70,8 +70,6 @@ window.addEventListener('DOMContentLoaded', () => {
 // Interruption-safe timeline driven by pointer enter/leave
 // ==========================================
 if (hero && !prefersReducedMotion && !isSmallViewport) {
-  // We build a paused GSAP timeline that cleanly plays forward on hover
-  // and smoothly reverses from exact current progress when pointer leaves.
   const hoverTl = gsap.timeline({
     paused: true,
     defaults: { ease: 'power3.out' }
@@ -95,33 +93,33 @@ if (hero && !prefersReducedMotion && !isSmallViewport) {
   }
 
   // Phase 2: Asymmetrical product dispersion across lower-middle width
-  // Product stagger 40-80ms (using 0.05s between offsets or exact timeline timings)
-  // Total duration: 1.3s
+  // Product stagger 40-80ms (using exact timings)
+  // Total duration: ~1.3s
   if (prodJar) {
-    hoverTl.to(prodJar, { x: -520, y: 0, duration: 1.25 }, 0.04);
+    hoverTl.to(prodJar, { x: -580, y: 0, duration: 1.25 }, 0.04);
   }
   if (prodAmber) {
-    hoverTl.to(prodAmber, { x: -370, y: 0, duration: 1.28 }, 0.08);
+    hoverTl.to(prodAmber, { x: -420, y: 0, duration: 1.28 }, 0.08);
   }
   if (prodMain) {
-    // Large cream shampoo remains central visual anchor
-    hoverTl.to(prodMain, { x: -215, y: 0, duration: 1.3 }, 0.12);
+    // Large cream shampoo (540px tall) shifts left to anchor the exact screen center
+    hoverTl.to(prodMain, { x: -250, y: 0, duration: 1.3 }, 0.12);
   }
   if (prodWhite) {
     // White conditioner shifts slightly right/center-right
-    hoverTl.to(prodWhite, { x: -65, y: 0, duration: 1.28 }, 0.16);
+    hoverTl.to(prodWhite, { x: -80, y: 0, duration: 1.28 }, 0.16);
   }
   if (prodSmall) {
     // Smaller amber bottle moves to far right of lineup
-    hoverTl.to(prodSmall, { x: 35, y: 0, duration: 1.25 }, 0.20);
+    hoverTl.to(prodSmall, { x: 45, y: 0, duration: 1.25 }, 0.20);
   }
 
-  // Decorative spheres move outward toward cluster edges
+  // Decorative spheres move outward toward cluster edges along floor line
   if (sphere1) {
-    hoverTl.to(sphere1, { x: -140, duration: 1.2 }, 0.1);
+    hoverTl.to(sphere1, { x: -160, duration: 1.2 }, 0.1);
   }
   if (sphere2) {
-    hoverTl.to(sphere2, { x: 70, duration: 1.2 }, 0.14);
+    hoverTl.to(sphere2, { x: 80, duration: 1.2 }, 0.14);
   }
 
   // Phase 3: Reveal bottom-left and bottom-right corner details smoothly
@@ -142,7 +140,6 @@ if (hero && !prefersReducedMotion && !isSmallViewport) {
 
   // Pointer event listeners
   hero.addEventListener('mouseenter', () => {
-    // Make detail elements pointer-accessible during expand
     if (detailLeft) detailLeft.style.pointerEvents = 'auto';
     if (detailRight) detailRight.style.pointerEvents = 'auto';
     hoverTl.play();

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
   /* Exact Aesop Warm Cream & Ivory Tokens */
@@ -14,6 +14,7 @@
   
   /* Cinematic Easing & Timing */
   --ease-aesop: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-rack: 650ms;
 }
 
 * {
@@ -52,8 +53,8 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  min-height: 720px;
-  max-height: 1080px;
+  min-height: 740px;
+  max-height: 1100px;
   background-color: var(--bg-studio);
   overflow: hidden;
   display: flex;
@@ -61,7 +62,7 @@ body {
   cursor: default;
 }
 
-/* Integrated Navigation */
+/* Integrated Swiss Minimalist Navigation (Exact Aesop Spec) */
 .hero-nav {
   position: absolute;
   top: 0;
@@ -71,33 +72,34 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.2rem 4.5rem;
+  padding: 2.1rem 4rem;
   background: transparent;
 }
 
 .nav-left, .nav-right {
   display: flex;
   align-items: center;
-  gap: 2.6rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
   text-decoration: none;
-  color: var(--text-primary);
-  font-size: 0.84rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
   font-weight: 400;
-  letter-spacing: 0.045em;
-  transition: opacity 0.2s ease;
+  letter-spacing: 0.035em;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-link:hover {
-  opacity: 0.65;
+  color: var(--text-primary);
+  opacity: 0.7;
 }
 
 .btn-drawer-trigger {
   background: transparent;
   border: none;
-  padding: 0.4rem;
+  padding: 0.3rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -105,8 +107,8 @@ body {
 }
 
 .dot-indicator {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--text-primary);
   transition: transform 0.25s var(--ease-aesop);
@@ -116,57 +118,57 @@ body {
   transform: scale(1.35);
 }
 
-/* Brand Wordmark */
+/* Brand Wordmark (Exact Aesop Serif Styling) */
 .hero-brand {
   position: absolute;
-  top: 6.8rem;
-  left: 4.5rem;
-  font-family: var(--font-sans);
-  font-size: 1.55rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  top: 5.8rem;
+  left: 4rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--text-primary);
   z-index: 90;
 }
 
 /* ==========================================
-   2. LEFT EDITORIAL COPY
+   2. LEFT EDITORIAL COPY (INITIAL COMPACT STATE)
    ========================================== */
 .hero-copy {
   position: absolute;
-  left: 4.5rem;
+  left: 4rem;
   top: 48%;
   transform: translateY(-50%);
-  max-width: 440px;
+  max-width: 420px;
   z-index: 80;
   will-change: transform, opacity;
   pointer-events: auto;
 }
 
 .hero-eyebrow {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 400;
   color: var(--text-secondary);
   letter-spacing: 0.05em;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .hero-heading {
   font-family: var(--font-serif);
-  font-size: 3.4rem;
+  font-size: 3.2rem;
   font-weight: 400;
   color: var(--text-primary);
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: 0.01em;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.3rem;
 }
 
 .hero-subline {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   font-weight: 400;
   color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 2.2rem;
+  line-height: 1.62;
+  margin-bottom: 2.1rem;
 }
 
 .hero-cta {
@@ -177,10 +179,10 @@ body {
   color: #fff;
   border: none;
   border-radius: 2px;
-  padding: 1.05rem 2.4rem;
-  font-size: 0.86rem;
+  padding: 0.9rem 2.1rem;
+  font-size: 0.82rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.045em;
   cursor: pointer;
   transition: background-color 0.25s ease, transform 0.25s var(--ease-aesop);
 }
@@ -191,31 +193,31 @@ body {
 }
 
 /* ==========================================
-   3. RIGHT PRODUCT CLUSTER (INITIAL COMPACT)
+   3. RIGHT PRODUCT CLUSTER & FLOOR BASELINE
    ========================================== */
-/* Floor plane sitting at ~78% viewport height */
+/* Floor plane sitting cleanly at ~78% viewport height */
 .hero-floor {
   position: absolute;
-  top: 78.5%;
-  left: 15%;
+  top: 78%;
+  left: 18%;
   right: 15%;
-  height: 22px;
+  height: 24px;
   background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.12) 0%, rgba(28, 27, 24, 0) 75%);
   border-radius: 50%;
   filter: blur(12px);
   z-index: 5;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: opacity 0.6s var(--ease-aesop), transform 0.6s var(--ease-aesop);
 }
 
-/* Circular backdrop behind central products when expanded */
+/* Circular backdrop behind central products when expanded (Exact Aesop Spec) */
 .hero-circle {
   position: absolute;
-  top: 48%;
+  top: 46%;
   left: 52%;
-  width: 500px;
-  height: 500px;
+  width: 560px;
+  height: 560px;
   border-radius: 50%;
   background: radial-gradient(circle at 45% 40%, #fbf9f4 0%, #f1ecdf 60%, #e6ded0 100%);
   transform: translate(-50%, -50%) scale(0.6);
@@ -236,124 +238,136 @@ body {
   pointer-events: auto;
 }
 
+/* Directional top-left studio lighting drop-shadows */
 .hero-product img {
   width: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(4px 6px 8px rgba(28, 27, 24, 0.14))
-          drop-shadow(10px 22px 30px rgba(28, 27, 24, 0.08));
+  filter:
+    drop-shadow(4px 5px 6px rgba(28, 27, 24, 0.15))
+    drop-shadow(8px 20px 28px rgba(28, 27, 24, 0.09))
+    drop-shadow(12px 42px 52px rgba(28, 27, 24, 0.05));
   pointer-events: none;
 }
 
-/* Small soft contact shadow directly beneath each product */
+/* Small soft directional contact shadow directly beneath each product */
 .prod-shadow {
   position: absolute;
-  bottom: -7px;
-  width: 76%;
-  height: 14px;
-  background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.32) 0%, rgba(28, 27, 24, 0) 75%);
+  bottom: -8px;
+  right: -5%;
+  width: 82%;
+  height: 16px;
+  background:
+    radial-gradient(ellipse 50% 50% at 40% 50%, rgba(28, 27, 24, 0.36) 0%, rgba(28, 27, 24, 0) 100%),
+    radial-gradient(ellipse 100% 65% at 45% 50%, rgba(28, 27, 24, 0.12) 0%, rgba(28, 27, 24, 0) 100%);
   border-radius: 50%;
-  filter: blur(5px);
+  filter: blur(7px);
   z-index: 1;
   pointer-events: none;
 }
 
-/* Initial compact right-side cluster positions (occupying roughly right 42–48% of viewport) */
+/* ---- Proportional Scaling & Compact Right-Side Positions ---- */
+/* Occupying roughly right 42–48% of viewport with realistic tall bottles */
 
-/* #prod-main: Large cream shampoo bottle (Main anchor, slightly right of center in right cluster) */
+/* #prod-main: Large cream shampoo bottle (Main anchor, ~540px tall, reaching top third) */
 #prod-main {
   left: 68%;
   z-index: 25;
 }
 #prod-main img {
-  height: 380px;
+  height: 540px;
   transform: translateY(-100%);
 }
 #prod-main .prod-shadow {
-  bottom: -8px;
-  width: 82%;
-  height: 16px;
+  bottom: -10px;
+  width: 86%;
+  height: 18px;
 }
 
-/* #prod-white: White conditioner bottle (Partially behind & slightly right of main) */
+/* #prod-white: White conditioner bottle (Partially behind & slightly right of main, ~440px tall) */
 #prod-white {
   left: 77%;
   z-index: 20;
 }
 #prod-white img {
-  height: 310px;
+  height: 440px;
   transform: translateY(-100%);
 }
 
-/* #prod-amber: Amber pump bottle (Partly behind/left of main) */
+/* #prod-amber: Amber pump bottle (Partly behind/left of main, ~390px tall) */
 #prod-amber {
   left: 60%;
   z-index: 18;
 }
 #prod-amber img {
-  height: 275px;
+  height: 390px;
   transform: translateY(-100%);
 }
 
-/* #prod-jar: Small jar (Lower-left of cluster) */
+/* #prod-jar: Small jar (Lower-left of cluster, ~210px tall) */
 #prod-jar {
-  left: 54%;
+  left: 53%;
   z-index: 22;
 }
 #prod-jar img {
-  height: 145px;
+  height: 210px;
   transform: translateY(-100%);
 }
+#prod-jar .prod-shadow {
+  bottom: -6px;
+  width: 76%;
+  height: 12px;
+}
 
-/* #prod-small: Smaller amber bottle near far-right edge of cluster */
+/* #prod-small: Smaller amber bottle near far-right edge of cluster (~310px tall) */
 #prod-small {
   left: 85%;
   z-index: 15;
 }
 #prod-small img {
-  height: 215px;
+  height: 310px;
   transform: translateY(-100%);
 }
 
 /* ==========================================
-   4. INTENTIONAL DECORATIVE SPHERES
+   4. INTENTIONAL DECORATIVE SPHERES (2 ONLY)
    ========================================== */
 .hero-sphere {
   position: absolute;
   top: 78%;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 24%, #ffffff 0%, #f5f1e8 30%, #ddd8cc 62%, #c4bfb1 100%);
+  background: radial-gradient(circle at 28% 22%, #ffffff 0%, #f5f1e8 30%, #ddd8cc 62%, #c4bfb1 100%);
   box-shadow:
     inset -2px -2px 5px rgba(28, 27, 24, 0.06),
-    2px 4px 6px -1px rgba(28, 27, 24, 0.20),
-    6px 12px 20px -6px rgba(28, 27, 24, 0.12);
+    3px 4px 5px -1px rgba(28, 27, 24, 0.20),
+    6px 14px 22px -6px rgba(28, 27, 24, 0.12);
   z-index: 12;
   pointer-events: none;
   will-change: transform, opacity;
 }
 
-/* Sphere 1: near lower-left edge of right cluster */
+/* Sphere 1: near lower-left edge of right cluster along floor line */
 #sphere-1 {
   left: 51%;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   transform: translate(-50%, -100%);
 }
 
-/* Sphere 2: near far-right edge of right cluster */
+/* Sphere 2: near far-right edge of right cluster along floor line */
 #sphere-2 {
-  left: 90%;
-  width: 18px;
-  height: 18px;
+  left: 89%;
+  width: 16px;
+  height: 16px;
   transform: translate(-50%, -100%);
 }
 
 /* ==========================================
-   5. EXPANDED STATE CORNER DETAILS
+   5. EXPANDED STATE CORNER DETAILS (Exact Aesop Spec)
    ========================================== */
 .hero-detail {
   position: absolute;
-  bottom: 3.2rem;
+  bottom: 2.8rem;
   z-index: 90;
   opacity: 0;
   pointer-events: none;
@@ -361,34 +375,36 @@ body {
 }
 
 .hero-detail-left {
-  left: 4.5rem;
+  left: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 
 .detail-name {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 400;
   color: var(--text-primary);
+  letter-spacing: 0.01em;
 }
 
 .detail-type {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
   letter-spacing: 0.04em;
 }
 
 .hero-detail-right {
-  right: 4.5rem;
+  right: 4rem;
+  bottom: 2.5rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .detail-price {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);
 }
@@ -398,8 +414,8 @@ body {
   color: #fff;
   border: none;
   border-radius: 2px;
-  padding: 0.8rem 1.6rem;
-  font-size: 0.82rem;
+  padding: 0.78rem 1.6rem;
+  font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -415,7 +431,7 @@ body {
    ========================================== */
 .aesop-footer {
   width: 100%;
-  padding: 1.6rem 4.5rem;
+  padding: 1.6rem 4rem;
   border-top: 1px solid rgba(223, 220, 213, 0.6);
   background: var(--bg-studio);
   z-index: 50;
@@ -617,9 +633,9 @@ body {
    ========================================== */
 @media (max-width: 1024px) {
   .hero-nav { padding: 1.6rem 2.5rem; }
-  .hero-brand { left: 2.5rem; top: 5.5rem; }
-  .hero-copy { left: 2.5rem; max-width: 380px; }
-  .hero-heading { font-size: 2.8rem; }
+  .hero-brand { left: 2.5rem; top: 5.2rem; }
+  .hero-copy { left: 2.5rem; max-width: 360px; }
+  .hero-heading { font-size: 2.7rem; }
 }
 
 @media (max-width: 768px) {
@@ -635,15 +651,15 @@ body {
   .hero-sphere { top: 680px; }
   
   #prod-main { left: 52%; }
-  #prod-main img { height: 280px; }
+  #prod-main img { height: 360px; }
   #prod-white { left: 70%; }
-  #prod-white img { height: 230px; }
+  #prod-white img { height: 300px; }
   #prod-amber { left: 32%; }
-  #prod-amber img { height: 200px; }
+  #prod-amber img { height: 260px; }
   #prod-jar { left: 15%; }
-  #prod-jar img { height: 110px; }
+  #prod-jar img { height: 140px; }
   #prod-small { left: 88%; }
-  #prod-small img { height: 160px; }
+  #prod-small img { height: 210px; }
   
   .hero-detail-left, .hero-detail-right { display: none; }
 }
