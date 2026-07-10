@@ -5,258 +5,159 @@ import { createIcons, X, Microscope } from 'lucide';
 createIcons({ icons: { X, Microscope } });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const isSmallViewport = window.matchMedia('(max-width: 768px)').matches;
 
 // ==========================================
-// 1. AESOP REGIMEN DATA STORE
+// 1. DOM REFERENCES
 // ==========================================
-const AESOP_REGIMENS = {
-  violet: {
-    id: 'violet',
-    eyebrow: 'A daily regimen • 01 / Violet Leaf',
-    title: 'Your personal selection',
-    prose: 'We propose a daily regimen comprising our 99.5% natural origin index gentle daily shampoo, enriched with amino acids and live prebiotic ferments suited to canine and feline delicate dermal mantles.',
-    topNotes: 'Crisp Violet Leaf, Dewy Morning Bergamot, Botanical Lavender',
-    heartNotes: 'Orris Root, White Muslin Accord, Soothing Chamomile Flower',
-    baseNotes: 'Clean Cedarwood, Soft Cashmere, Gentle Amber',
-    price: '$38',
-    theme: 'aesop-theme-violet'
-  },
-  santal: {
-    id: 'santal',
-    eyebrow: 'A daily regimen • 02 / Santal & White Tea',
-    title: 'Warm santal infusion',
-    prose: 'Formulated for deep calming restoration and antioxidant dermal defense. Featuring Australian sandalwood, green fig leaf, and white tea antioxidants to nourish sensitive companion coats.',
-    topNotes: 'Antioxidant White Tea Leaves, Italian Mandarin, Green Fig Leaf',
-    heartNotes: 'Australian Sandalwood, Cardamom Pods, Iris Flower',
-    baseNotes: 'Warm Amber crystals, Vetiver Root, Muted Tonka Bean',
-    price: '$38',
-    theme: 'aesop-theme-santal'
-  },
-  fig: {
-    id: 'fig',
-    eyebrow: 'A daily regimen • 03 / Fig & Neroli',
-    title: 'Mediterranean vitality',
-    prose: 'An uplifting Mediterranean botanical blend engineered to purify environmental impurities. Sun-ripened fig extract and Tunisian neroli restore natural coat luster and sebum balance.',
-    topNotes: 'Sun-ripened Mediterranean Fig, Tunisian Neroli, Lemon Zest',
-    heartNotes: 'Green Cypress Wood, Petitgrain, Fresh Jasmine Petals',
-    baseNotes: 'Earthy Cedarwood, Sun-warmed Bark, Clean Musk',
-    price: '$38',
-    theme: 'aesop-theme-fig'
-  }
-};
+const hero = document.getElementById('hero');
+const heroCopy = document.getElementById('hero-copy');
+const heroCircle = document.getElementById('hero-circle');
 
-let currentRegimen = 'violet';
+const prodJar = document.getElementById('prod-jar');
+const prodAmber = document.getElementById('prod-amber');
+const prodMain = document.getElementById('prod-main');
+const prodWhite = document.getElementById('prod-white');
+const prodSmall = document.getElementById('prod-small');
+
+const sphere1 = document.getElementById('sphere-1');
+const sphere2 = document.getElementById('sphere-2');
+
+const detailLeft = document.getElementById('detail-left');
+const detailRight = document.getElementById('detail-right');
+
+// Drawer references
+const btnOpenDrawer = document.getElementById('btn-open-drawer');
+const btnCloseDrawer = document.getElementById('btn-close-drawer');
+const specsDrawer = document.getElementById('specs-drawer');
+const drawerOverlay = document.getElementById('drawer-overlay');
+const btnRitual = document.getElementById('btn-add-ritual');
 
 // ==========================================
-// 2. SIGNATURE AESOP CINEMATIC LOAD TIMELINE
+// 2. ENTRANCE TIMELINE
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
   if (prefersReducedMotion) {
-    gsap.set('.gs-mask-item, .table-vessel, .footer-track', { opacity: 1, y: 0 });
+    gsap.set('#navbar, #hero-brand, #hero-copy, .hero-product, .hero-sphere, .footer-track', { opacity: 1, y: 0 });
     return;
   }
 
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  // 1. Top nav reveals softly
-  tl.fromTo('#navbar', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.45 });
+  tl.fromTo('#navbar', { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.45 });
+  tl.fromTo('#hero-brand', { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.5 }, '-=0.3');
+  tl.fromTo('#hero-copy > *', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, '-=0.35');
 
-  // 2. Left editorial prose emerges via cinematic vertical mask slides
-  tl.fromTo('.gs-mask-item', 
-    { opacity: 0, y: 18 }, 
-    { opacity: 1, y: 0, duration: 0.65, stagger: 0.07 }, 
-    '-=0.25'
+  // Products enter smoothly into their compact right-side positions
+  const products = [prodJar, prodAmber, prodMain, prodWhite, prodSmall].filter(Boolean);
+  tl.fromTo(products,
+    { opacity: 0, y: 25 },
+    { opacity: 1, y: 0, duration: 0.8, stagger: 0.06 },
+    '-=0.5'
   );
 
-  // 3. Right ensemble table vessels emerge from the table with left-to-right cinematic stagger
-  tl.fromTo('.gs-vessel',
-    { opacity: 0, y: 38, scale: 0.94 },
-    { opacity: 1, y: 0, scale: 1, duration: 0.78, stagger: 0.12, ease: 'power3.out' },
-    '-=0.55'
+  tl.fromTo(['#sphere-1', '#sphere-2'],
+    { opacity: 0, scale: 0.5 },
+    { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 },
+    '-=0.5'
   );
 
-  // 4. Swiss clinical footer bar settles
-  tl.fromTo('.footer-track', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45 }, '-=0.35');
-
-  // Set initial focus optical state
-  applyOpticalRackFocus('violet', true);
+  tl.fromTo('.footer-track', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45 }, '-=0.4');
 });
 
 // ==========================================
-// 3. OPTICAL DEPTH-OF-FIELD (DoF) RACK-FOCUS ENGINE
+// 3. HOVER EXPAND CHOREOGRAPHY (AESOP REFERENCE)
+// Interruption-safe timeline driven by pointer enter/leave
 // ==========================================
-const eyebrowEl = document.getElementById('regimen-eyebrow');
-const titleEl = document.getElementById('regimen-title');
-const proseEl = document.getElementById('regimen-prose');
-const btnRitual = document.getElementById('btn-add-ritual');
-const tabs = document.querySelectorAll('.aesop-tab');
-const vessels = document.querySelectorAll('.gs-vessel');
-
-// Drawer elements
-const drawerScentName = document.getElementById('drawer-scent-name');
-const noteTop = document.getElementById('note-top');
-const noteHeart = document.getElementById('note-heart');
-const noteBase = document.getElementById('note-base');
-
-function applyOpticalRackFocus(targetId, isInitial = false) {
-  vessels.forEach((vessel) => {
-    const vVariant = vessel.dataset.variant;
-    if (vVariant === 'amber') return; // background glass remains constant
-
-    if (vVariant === targetId) {
-      vessel.classList.add('active');
-      vessel.classList.remove('receded');
-      if (!isInitial && !prefersReducedMotion) {
-        gsap.to(vessel, {
-          scale: 1.05,
-          y: -6,
-          opacity: 1,
-          duration: 0.65,
-          ease: 'power3.out',
-          overwrite: 'auto'
-        });
-      }
-    } else {
-      vessel.classList.remove('active');
-      vessel.classList.add('receded');
-      if (!isInitial && !prefersReducedMotion) {
-        gsap.to(vessel, {
-          scale: 0.94,
-          y: 10,
-          opacity: 0.55,
-          duration: 0.65,
-          ease: 'power3.out',
-          overwrite: 'auto'
-        });
-      }
-    }
-  });
-}
-
-function selectRegimen(targetId) {
-  if (targetId === currentRegimen || !AESOP_REGIMENS[targetId]) return;
-
-  const data = AESOP_REGIMENS[targetId];
-  currentRegimen = targetId;
-
-  // 1. Update Tabs
-  tabs.forEach((t) => {
-    const isSelected = t.dataset.variant === targetId;
-    t.classList.toggle('active', isSelected);
-    t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+if (hero && !prefersReducedMotion && !isSmallViewport) {
+  // We build a paused GSAP timeline that cleanly plays forward on hover
+  // and smoothly reverses from exact current progress when pointer leaves.
+  const hoverTl = gsap.timeline({
+    paused: true,
+    defaults: { ease: 'power3.out' }
   });
 
-  // 2. Smooth Theme Studio Tone Shift
-  document.body.className = data.theme;
+  // Phase 1: Fade out initial left copy as product movement begins
+  hoverTl.to(heroCopy, {
+    y: -18,
+    opacity: 0,
+    duration: 0.38,
+    ease: 'power2.inOut'
+  }, 0);
 
-  // 3. Optical Rack-Focus across the Table Ensemble
-  applyOpticalRackFocus(targetId);
-
-  // 4. Kinetic Mask Wipe for Left Copy
-  if (!prefersReducedMotion) {
-    gsap.to([eyebrowEl, titleEl, proseEl, btnRitual], {
-      y: 12,
-      opacity: 0,
-      duration: 0.22,
-      stagger: 0.02,
-      ease: 'power2.in',
-      onComplete: () => {
-        if (eyebrowEl) eyebrowEl.textContent = data.eyebrow;
-        if (titleEl) titleEl.textContent = data.title;
-        if (proseEl) proseEl.textContent = data.prose;
-        if (btnRitual) btnRitual.textContent = `Select Formulation — ${data.price}`;
-
-        gsap.fromTo([eyebrowEl, titleEl, proseEl, btnRitual],
-          { y: -14, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.45, stagger: 0.035, ease: 'power3.out' }
-        );
-      }
-    });
-  } else {
-    if (eyebrowEl) eyebrowEl.textContent = data.eyebrow;
-    if (titleEl) titleEl.textContent = data.title;
-    if (proseEl) proseEl.textContent = data.prose;
-    if (btnRitual) btnRitual.textContent = `Select Formulation — ${data.price}`;
+  // Reveal circular backdrop behind central lineup
+  if (heroCircle) {
+    hoverTl.fromTo(heroCircle,
+      { opacity: 0, scale: 0.6 },
+      { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out' },
+      0.08
+    );
   }
 
-  // 5. Update Clinical Drawer
-  if (drawerScentName) drawerScentName.textContent = data.title;
-  if (noteTop) noteTop.textContent = data.topNotes;
-  if (noteHeart) noteHeart.textContent = data.heartNotes;
-  if (noteBase) noteBase.textContent = data.baseNotes;
-}
+  // Phase 2: Asymmetrical product dispersion across lower-middle width
+  // Product stagger 40-80ms (using 0.05s between offsets or exact timeline timings)
+  // Total duration: 1.3s
+  if (prodJar) {
+    hoverTl.to(prodJar, { x: -520, y: 0, duration: 1.25 }, 0.04);
+  }
+  if (prodAmber) {
+    hoverTl.to(prodAmber, { x: -370, y: 0, duration: 1.28 }, 0.08);
+  }
+  if (prodMain) {
+    // Large cream shampoo remains central visual anchor
+    hoverTl.to(prodMain, { x: -215, y: 0, duration: 1.3 }, 0.12);
+  }
+  if (prodWhite) {
+    // White conditioner shifts slightly right/center-right
+    hoverTl.to(prodWhite, { x: -65, y: 0, duration: 1.28 }, 0.16);
+  }
+  if (prodSmall) {
+    // Smaller amber bottle moves to far right of lineup
+    hoverTl.to(prodSmall, { x: 35, y: 0, duration: 1.25 }, 0.20);
+  }
 
-// Attach Tab Switcher Events
-tabs.forEach((tab) => {
-  tab.addEventListener('click', () => selectRegimen(tab.dataset.variant));
-  tab.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      selectRegimen(tab.dataset.variant);
-    }
+  // Decorative spheres move outward toward cluster edges
+  if (sphere1) {
+    hoverTl.to(sphere1, { x: -140, duration: 1.2 }, 0.1);
+  }
+  if (sphere2) {
+    hoverTl.to(sphere2, { x: 70, duration: 1.2 }, 0.14);
+  }
+
+  // Phase 3: Reveal bottom-left and bottom-right corner details smoothly
+  if (detailLeft) {
+    hoverTl.fromTo(detailLeft,
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' },
+      0.65
+    );
+  }
+  if (detailRight) {
+    hoverTl.fromTo(detailRight,
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' },
+      0.70
+    );
+  }
+
+  // Pointer event listeners
+  hero.addEventListener('mouseenter', () => {
+    // Make detail elements pointer-accessible during expand
+    if (detailLeft) detailLeft.style.pointerEvents = 'auto';
+    if (detailRight) detailRight.style.pointerEvents = 'auto';
+    hoverTl.play();
   });
-});
 
-// Make Physical Vessels on the Table Interactive!
-vessels.forEach((vessel) => {
-  if (vessel.dataset.variant === 'amber') return;
-  vessel.addEventListener('click', () => selectRegimen(vessel.dataset.variant));
-  vessel.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      selectRegimen(vessel.dataset.variant);
-    }
-  });
-});
-
-// ==========================================
-// 4. RESTRAINED STUDIO PARALLAX & HOVER PHYSICS
-// ==========================================
-const tableStage = document.getElementById('table-stage');
-if (tableStage && !isTouchDevice && !prefersReducedMotion) {
-  tableStage.addEventListener('mousemove', (e) => {
-    const rect = tableStage.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-
-    const tiltX = (-y / rect.height) * 1.2;
-    const tiltY = (x / rect.width) * 1.2;
-
-    const activeVessel = tableStage.querySelector('.table-vessel.active .vessel-img');
-    if (activeVessel) {
-      gsap.to(activeVessel, {
-        rotateX: tiltX,
-        rotateY: tiltY,
-        x: (x / rect.width) * 5,
-        duration: 0.55,
-        ease: 'power2.out'
-      });
-    }
-  });
-
-  tableStage.addEventListener('mouseleave', () => {
-    const activeVessel = tableStage.querySelector('.table-vessel.active .vessel-img');
-    if (activeVessel) {
-      gsap.to(activeVessel, {
-        rotateX: 0,
-        rotateY: 0,
-        x: 0,
-        duration: 0.75,
-        ease: 'power3.out'
-      });
-    }
+  hero.addEventListener('mouseleave', () => {
+    if (detailLeft) detailLeft.style.pointerEvents = 'none';
+    if (detailRight) detailRight.style.pointerEvents = 'none';
+    hoverTl.reverse();
   });
 }
 
 // ==========================================
-// 5. CLINICAL SPECS DRAWER CONTROLS
+// 4. CLINICAL SPECS DRAWER CONTROLS
 // ==========================================
-const btnOpenDrawer = document.getElementById('btn-open-drawer');
-const btnCloseDrawer = document.getElementById('btn-close-drawer');
-const specsDrawer = document.getElementById('specs-drawer');
-const drawerOverlay = document.getElementById('drawer-overlay');
-
 function openDrawer() {
   specsDrawer?.classList.add('active');
   drawerOverlay?.classList.add('active');

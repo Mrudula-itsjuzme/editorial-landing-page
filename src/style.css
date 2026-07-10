@@ -1,40 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 :root {
-  /* Exact Aesop Studio Warm Cream & Ivory Tokens */
+  /* Exact Aesop Warm Cream & Ivory Tokens */
   --bg-studio: #F4F1EA;
   --text-primary: #1C1B18;
   --text-secondary: #5E5B54;
   --text-muted: #8C8880;
   --border-subtle: #DFDCD5;
-  --border-focus: #1C1B18;
-  
-  /* Apothecary Accent & Scent Themes */
   --accent-dark: #1C1B18;
-  --theme-spotlight: rgba(232, 224, 238, 0.45);
   
   --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
   /* Cinematic Easing & Timing */
-  --ease-aesop: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-mask: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-rack: 650ms;
-}
-
-body.aesop-theme-violet {
-  --bg-studio: #F4F1EA;
-  --theme-spotlight: rgba(234, 224, 242, 0.5);
-}
-
-body.aesop-theme-santal {
-  --bg-studio: #F5EFEB;
-  --theme-spotlight: rgba(244, 235, 226, 0.55);
-}
-
-body.aesop-theme-fig {
-  --bg-studio: #EFF3EE;
-  --theme-spotlight: rgba(228, 237, 226, 0.55);
+  --ease-aesop: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -48,11 +27,9 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  transition: background-color var(--duration-rack) var(--ease-aesop);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -69,18 +46,33 @@ body {
 }
 
 /* ==========================================
-   1. AESOP SWISS MINIMALIST TOP NAV BAR
+   1. FULL-VIEWPORT HERO COMPOSITION
    ========================================== */
-.aesop-nav {
-  position: sticky;
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
+  max-height: 1080px;
+  background-color: var(--bg-studio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+/* Integrated Navigation */
+.hero-nav {
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.8rem 4.5rem;
+  padding: 2.2rem 4.5rem;
   background: transparent;
-  transition: padding 0.35s var(--ease-aesop);
 }
 
 .nav-left, .nav-right {
@@ -95,8 +87,6 @@ body {
   font-size: 0.84rem;
   font-weight: 400;
   letter-spacing: 0.045em;
-  position: relative;
-  padding: 0.2rem 0;
   transition: opacity 0.2s ease;
 }
 
@@ -119,94 +109,67 @@ body {
   height: 9px;
   border-radius: 50%;
   background-color: var(--text-primary);
-  transition: transform 0.25s var(--ease-aesop), background-color 0.25s ease;
+  transition: transform 0.25s var(--ease-aesop);
 }
 
 .btn-drawer-trigger:hover .dot-indicator {
   transform: scale(1.35);
 }
 
-/* ==========================================
-   2. AESOP REGIMEN HERO composition
-   ========================================== */
-.aesop-hero {
-  flex: 1;
-  max-width: 1600px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 1.2rem 4.5rem 5rem 4.5rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 10;
-}
-
-.aesop-brand-row {
-  margin-bottom: 2rem;
-}
-
-.aesop-logo {
+/* Brand Wordmark */
+.hero-brand {
+  position: absolute;
+  top: 6.8rem;
+  left: 4.5rem;
   font-family: var(--font-sans);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--text-primary);
+  z-index: 90;
 }
 
-.aesop-split-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 4rem;
-  align-items: center;
-  min-height: 560px;
-}
-
-/* Left Minimalist Editorial Column */
-.aesop-editorial {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 480px;
-  z-index: 20;
-}
-
-.gs-mask-wrap {
-  overflow: hidden;
-}
-
-.gs-mask-item {
+/* ==========================================
+   2. LEFT EDITORIAL COPY
+   ========================================== */
+.hero-copy {
+  position: absolute;
+  left: 4.5rem;
+  top: 48%;
+  transform: translateY(-50%);
+  max-width: 440px;
+  z-index: 80;
   will-change: transform, opacity;
+  pointer-events: auto;
 }
 
-.aesop-eyebrow {
+.hero-eyebrow {
   font-size: 0.82rem;
   font-weight: 400;
   color: var(--text-secondary);
-  letter-spacing: 0.04em;
-  margin-bottom: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.1rem;
 }
 
-.aesop-title {
+.hero-heading {
   font-family: var(--font-serif);
   font-size: 3.4rem;
   font-weight: 400;
   color: var(--text-primary);
   line-height: 1.12;
   letter-spacing: 0.01em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
-.aesop-prose {
+.hero-subline {
   font-size: 0.94rem;
   font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.65;
-  letter-spacing: 0.01em;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.2rem;
 }
 
-/* Sharp, Solid Rectangular CTA Button */
-.btn-aesop {
+.hero-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -215,218 +178,240 @@ body {
   border: none;
   border-radius: 2px;
   padding: 1.05rem 2.4rem;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.25s var(--ease-aesop), box-shadow 0.25s ease;
-  width: fit-content;
-  margin-bottom: 3.5rem;
+  transition: background-color 0.25s ease, transform 0.25s var(--ease-aesop);
 }
 
-.btn-aesop:hover {
+.hero-cta:hover {
   background: #33312C;
   transform: translateY(-1.5px);
-  box-shadow: 0 8px 20px -5px rgba(28, 27, 24, 0.28);
-}
-
-.btn-aesop:active {
-  transform: scale(0.99);
-}
-
-/* Minimalist Text Tab Switcher */
-.aesop-tabs {
-  margin-top: 0.5rem;
-}
-
-.tabs-inner {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.aesop-tab {
-  background: transparent;
-  border: none;
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  padding: 0.35rem 0;
-  position: relative;
-  transition: color 0.25s ease;
-}
-
-.aesop-tab::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 1px;
-  background: var(--text-primary);
-  transition: width 0.35s var(--ease-aesop);
-}
-
-.aesop-tab:hover {
-  color: var(--text-primary);
-}
-
-.aesop-tab.active {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.aesop-tab.active::after {
-  width: 100%;
-}
-
-.tab-sep {
-  color: var(--text-muted);
-  font-size: 0.75rem;
 }
 
 /* ==========================================
-   3. RIGHT APOTHECARY ENSEMBLE TABLE STAGE
+   3. RIGHT PRODUCT CLUSTER (INITIAL COMPACT)
    ========================================== */
-.aesop-table-stage {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 580px;
-  width: 100%;
+/* Floor plane sitting at ~78% viewport height */
+.hero-floor {
+  position: absolute;
+  top: 78.5%;
+  left: 15%;
+  right: 15%;
+  height: 22px;
+  background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.12) 0%, rgba(28, 27, 24, 0) 75%);
+  border-radius: 50%;
+  filter: blur(12px);
   z-index: 5;
-  perspective: 1400px;
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.6s var(--ease-aesop), transform 0.6s var(--ease-aesop);
 }
 
-.table-surface {
+/* Circular backdrop behind central products when expanded */
+.hero-circle {
   position: absolute;
-  bottom: 12px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(223, 220, 213, 0) 0%, rgba(223, 220, 213, 0.8) 50%, rgba(223, 220, 213, 0) 100%);
-  z-index: 1;
+  top: 48%;
+  left: 52%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 40%, #fbf9f4 0%, #f1ecdf 60%, #e6ded0 100%);
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  z-index: 8;
+  pointer-events: none;
+  will-change: transform, opacity;
 }
 
-/* Physical Vessels Ensemble Positioning */
-.table-vessel {
+/* Base product wrapper */
+.hero-product {
   position: absolute;
-  bottom: 24px;
+  top: 78%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-style: preserve-3d;
-  will-change: transform, filter, opacity;
-  transition: filter var(--duration-rack) var(--ease-aesop),
-              opacity var(--duration-rack) var(--ease-aesop),
-              z-index 0s;
-  cursor: pointer;
+  will-change: transform;
+  pointer-events: auto;
 }
 
-.table-vessel:focus-visible {
-  outline: 2px solid var(--text-primary);
-  outline-offset: 6px;
-  border-radius: 6px;
-}
-
-/* Vessel 1: Fig Small Jar (Front Left) */
-.vessel-jar {
-  left: 6%;
-  z-index: 15;
-}
-.vessel-jar .vessel-img {
-  max-height: 270px;
-}
-
-/* Vessel 2: Main Hero Pump Bottle (Center) */
-.vessel-main {
-  left: 32%;
-  z-index: 25;
-}
-.vessel-main .vessel-img {
-  max-height: 500px;
-}
-
-/* Vessel 3: Flanking Medium Bottle (Right) */
-.vessel-flank {
-  right: 15%;
-  z-index: 18;
-}
-.vessel-flank .vessel-img {
-  max-height: 380px;
-}
-
-/* Vessel 4: Amber Silhouette Vessel (Far Background Right) */
-.vessel-amber {
-  right: 1%;
-  z-index: 10;
-  pointer-events: none;
-}
-.vessel-amber .vessel-img {
-  max-height: 300px;
-}
-
-.vessel-img-wrap {
-  position: relative;
-  z-index: 5;
-}
-
-.vessel-img {
+.hero-product img {
   width: auto;
   object-fit: contain;
-  transition: transform var(--duration-rack) var(--ease-aesop);
+  display: block;
+  filter: drop-shadow(4px 6px 8px rgba(28, 27, 24, 0.14))
+          drop-shadow(10px 22px 30px rgba(28, 27, 24, 0.08));
+  pointer-events: none;
 }
 
-/* Realistic Ground Contact Shadows */
-.vessel-contact-shadow {
+/* Small soft contact shadow directly beneath each product */
+.prod-shadow {
   position: absolute;
-  bottom: -10px;
-  width: 75%;
-  height: 22px;
-  background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.35) 0%, rgba(28, 27, 24, 0) 70%);
+  bottom: -7px;
+  width: 76%;
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(28, 27, 24, 0.32) 0%, rgba(28, 27, 24, 0) 75%);
   border-radius: 50%;
-  filter: blur(8px);
-  z-index: 2;
-  transition: transform var(--duration-rack) var(--ease-aesop),
-              opacity var(--duration-rack) var(--ease-aesop);
+  filter: blur(5px);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Optical Depth-of-Field (DoF) Classes (Controlled by GSAP & CSS) */
-.table-vessel.active {
-  z-index: 30;
-  opacity: 1 !important;
-  filter: drop-shadow(0 28px 45px rgba(28, 27, 24, 0.22)) blur(0px) !important;
+/* Initial compact right-side cluster positions (occupying roughly right 42–48% of viewport) */
+
+/* #prod-main: Large cream shampoo bottle (Main anchor, slightly right of center in right cluster) */
+#prod-main {
+  left: 68%;
+  z-index: 25;
+}
+#prod-main img {
+  height: 380px;
+  transform: translateY(-100%);
+}
+#prod-main .prod-shadow {
+  bottom: -8px;
+  width: 82%;
+  height: 16px;
 }
 
-.table-vessel.active .vessel-img {
-  transform: scale(1.05);
+/* #prod-white: White conditioner bottle (Partially behind & slightly right of main) */
+#prod-white {
+  left: 77%;
+  z-index: 20;
+}
+#prod-white img {
+  height: 310px;
+  transform: translateY(-100%);
 }
 
-.table-vessel.active .vessel-contact-shadow {
-  transform: scale(1.18);
-  opacity: 0.9;
+/* #prod-amber: Amber pump bottle (Partly behind/left of main) */
+#prod-amber {
+  left: 60%;
+  z-index: 18;
+}
+#prod-amber img {
+  height: 275px;
+  transform: translateY(-100%);
 }
 
-.table-vessel.receded {
-  opacity: 0.55 !important;
-  filter: drop-shadow(0 10px 18px rgba(28, 27, 24, 0.08)) blur(2.5px) !important;
+/* #prod-jar: Small jar (Lower-left of cluster) */
+#prod-jar {
+  left: 54%;
+  z-index: 22;
+}
+#prod-jar img {
+  height: 145px;
+  transform: translateY(-100%);
 }
 
-.table-vessel.receded .vessel-img {
-  transform: scale(0.94);
+/* #prod-small: Smaller amber bottle near far-right edge of cluster */
+#prod-small {
+  left: 85%;
+  z-index: 15;
 }
-
-.table-vessel.receded .vessel-contact-shadow {
-  transform: scale(0.85);
-  opacity: 0.4;
+#prod-small img {
+  height: 215px;
+  transform: translateY(-100%);
 }
 
 /* ==========================================
-   4. SWISS CLINICAL FOOTER BAR ACROSS BOTTOM
+   4. INTENTIONAL DECORATIVE SPHERES
+   ========================================== */
+.hero-sphere {
+  position: absolute;
+  top: 78%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 24%, #ffffff 0%, #f5f1e8 30%, #ddd8cc 62%, #c4bfb1 100%);
+  box-shadow:
+    inset -2px -2px 5px rgba(28, 27, 24, 0.06),
+    2px 4px 6px -1px rgba(28, 27, 24, 0.20),
+    6px 12px 20px -6px rgba(28, 27, 24, 0.12);
+  z-index: 12;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Sphere 1: near lower-left edge of right cluster */
+#sphere-1 {
+  left: 51%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -100%);
+}
+
+/* Sphere 2: near far-right edge of right cluster */
+#sphere-2 {
+  left: 90%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -100%);
+}
+
+/* ==========================================
+   5. EXPANDED STATE CORNER DETAILS
+   ========================================== */
+.hero-detail {
+  position: absolute;
+  bottom: 3.2rem;
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.hero-detail-left {
+  left: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.detail-type {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.hero-detail-right {
+  right: 4.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.detail-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.detail-cta {
+  background: var(--accent-dark);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.detail-cta:hover {
+  background: #33312C;
+}
+
+/* ==========================================
+   6. FOOTER & DRAWER
    ========================================== */
 .aesop-footer {
   width: 100%;
@@ -459,9 +444,7 @@ body {
   font-size: 0.7rem;
 }
 
-/* ==========================================
-   5. SLIDE-OUT CLINICAL SPECS DRAWER
-   ========================================== */
+/* Specs Drawer */
 .drawer-overlay {
   position: fixed;
   top: 0;
@@ -629,58 +612,38 @@ body {
   font-weight: 400;
 }
 
-/* Responsive Layouts */
-@media (max-width: 1200px) {
-  .aesop-split-grid {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
-  
-  .aesop-editorial {
-    max-width: 100%;
-  }
-  
-  .aesop-table-stage {
-    min-height: 480px;
-  }
-  
-  .vessel-main .vessel-img { max-height: 420px; }
-  .vessel-flank .vessel-img { max-height: 330px; }
-  .vessel-jar .vessel-img { max-height: 230px; }
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 1024px) {
+  .hero-nav { padding: 1.6rem 2.5rem; }
+  .hero-brand { left: 2.5rem; top: 5.5rem; }
+  .hero-copy { left: 2.5rem; max-width: 380px; }
+  .hero-heading { font-size: 2.8rem; }
 }
 
 @media (max-width: 768px) {
-  .aesop-nav {
-    padding: 1.2rem 1.6rem;
-  }
+  .hero { height: auto; min-height: 820px; padding-bottom: 4rem; overflow: visible; }
+  .nav-left { display: none; }
+  .hero-nav { padding: 1.2rem 1.6rem; }
+  .hero-brand { left: 1.6rem; top: 4.5rem; font-size: 1.35rem; }
+  .hero-copy { position: relative; left: 0; top: 0; transform: none; padding: 7.5rem 1.6rem 2rem 1.6rem; max-width: 100%; }
+  .hero-heading { font-size: 2.4rem; }
   
-  .nav-left {
-    display: none;
-  }
+  .hero-floor { top: 680px; }
+  .hero-product { top: 680px; }
+  .hero-sphere { top: 680px; }
   
-  .aesop-hero {
-    padding: 1rem 1.6rem 3rem 1.6rem;
-  }
+  #prod-main { left: 52%; }
+  #prod-main img { height: 280px; }
+  #prod-white { left: 70%; }
+  #prod-white img { height: 230px; }
+  #prod-amber { left: 32%; }
+  #prod-amber img { height: 200px; }
+  #prod-jar { left: 15%; }
+  #prod-jar img { height: 110px; }
+  #prod-small { left: 88%; }
+  #prod-small img { height: 160px; }
   
-  .aesop-title {
-    font-size: 2.6rem;
-  }
-  
-  .aesop-table-stage {
-    min-height: 380px;
-    justify-content: space-around;
-  }
-  
-  .vessel-main { left: 20%; }
-  .vessel-jar { left: 0%; }
-  .vessel-flank { right: 5%; }
-  .vessel-amber { display: none; }
-  
-  .vessel-main .vessel-img { max-height: 340px; }
-  .vessel-flank .vessel-img { max-height: 260px; }
-  .vessel-jar .vessel-img { max-height: 180px; }
-  
-  .aesop-footer {
-    padding: 1.2rem 1.6rem;
-  }
+  .hero-detail-left, .hero-detail-right { display: none; }
 }
