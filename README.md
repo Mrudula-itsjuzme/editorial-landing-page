@@ -1,12 +1,14 @@
-# Furrytail Customer Hero
+# Editorial Landing Page
 
-An editorial, interaction-led e-commerce hero concept for a premium pet-care brand.
+An editorial, interaction-led landing-page experiment for a premium pet-care concept.
 
 The experience turns a product collection into a small ritual: users can hover across the hero, reveal product details, switch between care items, and add products to a session-based ritual bag without leaving the composition.
 
+This is an independent UI and interaction-design trial, not an official brand implementation.
+
 ## Overview
 
-This prototype explores how a hero section can do more than introduce a brand. It combines storytelling, product discovery, and lightweight commerce interactions inside one focused screen.
+This prototype explores how a landing-page hero can do more than introduce a brand. It combines storytelling, product discovery, and lightweight commerce interactions inside one focused screen.
 
 The design direction is intentionally minimal and tactile, with soft product staging, restrained typography, cursor-responsive motion, and a calm luxury-care tone.
 
@@ -40,8 +42,8 @@ The current concept includes:
 ## Run locally
 
 ```bash
-git clone https://github.com/Mrudula-itsjuzme/customer_hero.git
-cd customer_hero
+git clone https://github.com/Mrudula-itsjuzme/editorial-landing-page.git
+cd editorial-landing-page
 npm install
 npm run dev
 ```
@@ -66,4 +68,4 @@ This repository contains a front-end concept rather than a complete storefront. 
 
 ## Author
 
-Built by [Pedamallu Sai Mrudula](https://github.com/Mrudula-itsjuzme) as a product-interaction and frontend design experiment.
+Built by [Pedamallu Sai Mrudula](https://github.com/Mrudula-itsjuzme) as a landing-page interaction and frontend design experiment.
